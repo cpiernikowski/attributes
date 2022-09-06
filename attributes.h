@@ -54,10 +54,10 @@
 #   define att_force_inline __attribute__((always_inline))
 
 #   if __GNUC__ >= 3
-#       define att_expect(expr, prob) __builtin_expect(!!(expr), prob)
+#       define att_expect(expr, expected) __builtin_expect(!!(expr), expected)
 #       define att_likely_expr(expr) att_expect(expr, 1)
 #       define att_unlikely_expr(expr) att_expect(expr, 0)
-#       define _ATT_HAS_EXPECT
+#       define _ATT_HAS_EXPECT_LIKELY_UNLIKELY
 #   endif
 
 #   if __GNUC__ >= 4
@@ -122,14 +122,17 @@
 
 #       if __has_attribute(aligned)
 #           define att_align(alignment) __attribute__((aligned(alignment)))
+//#         define _ATT_HAS_ALIGN
 #       endif
 
 #       if __has_attribute(noinline)
 #           define att_noinline __attribute__((noinline))
+#           define _ATT_HAS_NOINLINE
 #       endif
 
 #       if __has_attribute(naked)
 #           define att_naked __attribute__((naked))
+//#         define _ATT_HAS_NAKED
 #       endif
 
 #       if __has_attribute(pure)
@@ -162,12 +165,13 @@
 //#         define _ATT_HAS_DESTRUCTOR
 #       endif
 
-#       ifdef __PRETTY_FUNCTION__
-#           define att_pretty_fun __PRETTY_FUNCTION__
-#           define _ATT_HAS_PRETTY_FUN
-#       endif
-
 #   endif /* ifdef __has_attribute */
+
+#   ifdef __PRETTY_FUNCTION__
+#       define att_pretty_fun __PRETTY_FUNCTION__
+#       define _ATT_HAS_PRETTY_FUN
+#   endif
+
 #elif defined _MSC_VER
 #   ifndef _ATT_HAS_NORETURN
 #       define att_noreturn __declspec(noreturn)
@@ -183,14 +187,20 @@
 #   define att_align(alignment) __declspec(align(alignment))
 #   define att_noinline __declspec(noinline)
 #   define att_naked __declspec(naked)
+
+#   define _ATT_HAS_NOINLINE
+
 #else
 #   define att_force_inline
-#   define att_align
 #   define att_noinline
-//# define att_naked // not defined as *nothing* because it might be dangerous
+#   define _ATT_HAS_NOINLINE
+
+//  not defined as *nothing* because it might be dangerous
+//# define att_naked
+//# define att_align
 #endif
 
-#ifndef _ATT_HAS_EXPECT
+#ifndef _ATT_HAS_EXPECT_LIKELY_UNLIKELY
 #   define att_expect(expr, prob) (expr)
 #   define att_likely_expr(expr) (expr)
 #   define att_unlikely_expr(expr) (expr)
@@ -249,7 +259,15 @@
 #   define att_unlikely_branch
 #endif
 
+#ifndef _ATT_HAS_NOINLINE
+#   define att_noinline
+#endif
+
 /* attributes not defined as *nothing* because it might be dangerous
+
+#ifndef _ATT_HAS_ALIGN
+#   define att_align(alignment)
+#endif
 
 #ifndef _ATT_HAS_USED
 #   define att_used
