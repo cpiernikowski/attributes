@@ -36,7 +36,7 @@
 #   define att_maybe_unused [[maybe_unused]]
 #   define _ATT_HAS_MAYBE_UNUSED
 
-#   define att_fallthrough
+#   define att_fallthrough [[fallthrough]]
 #   define _ATT_HAS_FALLTHROUGH
 #endif
 
