@@ -16,7 +16,7 @@
 #       define ATT_HAS_CPP14
 #   endif
 
-#   if cplusplus >= 201103L
+#   if __cplusplus >= 201103L
 #       define ATT_HAS_CPP11
 #   endif
 #else
