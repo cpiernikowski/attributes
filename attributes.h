@@ -90,17 +90,17 @@
 //#         define _ATT_HAS_CLEANUP
 #       endif
 
-#       if not defined _ATT_HAS_MAYBE_UNUSED and __has_attribute(unused)
+#       if !defined _ATT_HAS_MAYBE_UNUSED && __has_attribute(unused)
 #           define att_maybe_unused __attribute__((unused))
 #           define _ATT_HAS_MAYBE_UNUSED
 #       endif
 
-#       if not defined _ATT_HAS_NORETURN and __has_attribute(noreturn)
+#       if !defined _ATT_HAS_NORETURN && __has_attribute(noreturn)
 #           define att_noreturn __attribute__((noreturn))
 #           define _ATT_HAS_NORETURN
 #       endif
 
-#       if not defined _ATT_HAS_DEPRECATED and __has_attribute(deprecated)
+#       if !defined _ATT_HAS_DEPRECATED && __has_attribute(deprecated)
 #           define att_deprecated(message) __attribute__((deprecated(message)))
 #           define _ATT_HAS_DEPRECATED
 #       endif
@@ -291,7 +291,7 @@
 
 */
 
-#if not defined _ATT_HAS_PRETTY_FUN and defined __FUNCTION__
+#if !defined _ATT_HAS_PRETTY_FUN && defined __FUNCTION__
 #   define att_pretty_fun __FUNCTION__
 #else
 #   define att_pretty_fun "<unknown function>"
