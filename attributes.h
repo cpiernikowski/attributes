@@ -290,10 +290,28 @@
 */
 
 #ifndef _ATT_HAS_PRETTY_FUN
-#   define att_pretty_fun __func__
+#   ifdef ATT_HAS_CPP11
+#       define att_pretty_fun __func__
+#   elif defined __STDC_VERSION__
+#       if __STDC_VERSION__ >= 199901L
+#           define att_pretty_fun __func__
+#       else
+#           define att_pretty_fun "<unknown function>"
+#       endif
+#   else
+#       define att_pretty_fun "<unknown function>"
+#   endif
 #endif
 
-#define att_fun __func__
+#ifdef ATT_HAS_CPP11
+#   define att_fun __func__
+#elif defined __STDC_VERSION__
+#   if __STDC_VERSION__ >= 199901L
+#       define att_fun __func__
+#   endif
+#else
+#   define att_fun "<unknown function>"
+#endif
 
 #ifdef ATT_HAS_CPP14
 #   define att_constexpr14 constexpr
