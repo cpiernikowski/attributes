@@ -199,7 +199,7 @@
 #endif
 
 #ifndef _ATT_HAS_EXPECT_LIKELY_UNLIKELY
-#   define att_expect(expr, prob) (expr)
+#   define att_expect(expr, expected) (expr)
 #   define att_likely_expr(expr) (expr)
 #   define att_unlikely_expr(expr) (expr)
 #endif
@@ -308,6 +308,8 @@
 #elif defined __STDC_VERSION__
 #   if __STDC_VERSION__ >= 199901L
 #       define att_fun __func__
+#   else
+#       define att_fun "<unknown function>"
 #   endif
 #else
 #   define att_fun "<unknown function>"
