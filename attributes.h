@@ -45,7 +45,7 @@
 #   define _ATT_HAS_DEPRECATED
 #endif
 
-#ifdef ATT_HAS_CPP_11
+#ifdef ATT_HAS_CPP11
 #   define att_noreturn [[noreturn]]
 #   define _ATT_HAS_NORETURN
 #endif
