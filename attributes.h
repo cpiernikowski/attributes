@@ -167,10 +167,8 @@
 
 #   endif /* ifdef __has_attribute */
 
-#   ifdef __PRETTY_FUNCTION__
-#       define att_pretty_fun __PRETTY_FUNCTION__
-#       define _ATT_HAS_PRETTY_FUN
-#   endif
+#   define att_pretty_fun __PRETTY_FUNCTION__
+#   define _ATT_HAS_PRETTY_FUN
 
 #elif defined _MSC_VER
 #   ifndef _ATT_HAS_NORETURN
@@ -291,17 +289,11 @@
 
 */
 
-#if !defined _ATT_HAS_PRETTY_FUN && defined __FUNCTION__
-#   define att_pretty_fun __FUNCTION__
-#else
-#   define att_pretty_fun "<unknown function>"
+#ifndef _ATT_HAS_PRETTY_FUN
+#   define att_pretty_fun __func__
 #endif
 
-#ifdef __FUNCTION__
-#   define att_fun __FUNCTION__
-#else
-#   define att_fun "<unknown function>"
-#endif
+#define att_fun __func__
 
 #ifdef ATT_HAS_CPP14
 #   define att_constexpr14 constexpr
