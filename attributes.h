@@ -122,7 +122,7 @@
 
 #       if __has_attribute(aligned)
 #           define att_align(alignment) __attribute__((aligned(alignment)))
-#         define _ATT_HAS_ALIGN
+#           define _ATT_HAS_ALIGN
 #       endif
 
 #       if __has_attribute(noinline)
@@ -132,7 +132,7 @@
 
 #       if __has_attribute(naked)
 #           define att_naked __attribute__((naked))
-#         define _ATT_HAS_NAKED
+#           define _ATT_HAS_NAKED
 #       endif
 
 #       if __has_attribute(pure)
@@ -142,7 +142,7 @@
 
 #       if __has_attribute(used)
 #           define att_used __attribute__((used))
-#         define _ATT_HAS_USED
+#           define _ATT_HAS_USED
 #       endif
 
 #       if __has_attribute(weak)
@@ -152,17 +152,17 @@
 
 #       if __has_attribute(packed)
 #           define att_packed
-#         define _ATT_HAS_PACKED
+#           define _ATT_HAS_PACKED
 #       endif
 
 #       if __has_attribute(constructor)
 #           define att_constructor
-#         define _ATT_HAS_CONSTRUCTOR
+#           define _ATT_HAS_CONSTRUCTOR
 #       endif
 
 #       if __has_attribute(destructor)
 #           define att_destructor
-#         define _ATT_HAS_DESTRUCTOR
+#           define _ATT_HAS_DESTRUCTOR
 #       endif
 
 #   endif /* ifdef __has_attribute */
@@ -185,10 +185,9 @@
 #   define att_align(alignment) __declspec(align(alignment))
 #   define _ATT_HAS_ALIGN
 #   define att_noinline __declspec(noinline)
+#   define _ATT_HAS_NOINLINE
 #   define att_naked __declspec(naked)
 #   define _ATT_HAS_NAKED
-
-#   define _ATT_HAS_NOINLINE
 
 #   define att_pretty_fun __FUNCSIG__
 #   define _ATT_HAS_PRETTY_FUN
@@ -288,7 +287,6 @@
 #   ifndef _ATT_HAS_CLEANUP
 #      define att_cleanup(fun)
 #   endif
-
 #endif /* ifndef UNSAFE_ATTRIBUTES */
 
 #ifndef _ATT_HAS_PRETTY_FUN
