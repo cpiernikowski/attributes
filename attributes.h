@@ -87,7 +87,7 @@
  
 #       if __has_attribute(__cleanup__)
 #           define att_cleanup(fun) __attribute__((__cleanup__(fun)))
-#         define _ATT_HAS_CLEANUP
+#           define _ATT_HAS_CLEANUP
 #       endif
 
 #       if !defined _ATT_HAS_MAYBE_UNUSED && __has_attribute(unused)
@@ -146,22 +146,22 @@
 #       endif
 
 #       if __has_attribute(weak)
-#           define att_weak
+#           define att_weak __attribute__((weak))
 #           define _ATT_HAS_WEAK
 #       endif
 
 #       if __has_attribute(packed)
-#           define att_packed
+#           define att_packed __attribute__((packed))
 #           define _ATT_HAS_PACKED
 #       endif
 
 #       if __has_attribute(constructor)
-#           define att_constructor
+#           define att_constructor __attribute__((constructor))
 #           define _ATT_HAS_CONSTRUCTOR
 #       endif
 
 #       if __has_attribute(destructor)
-#           define att_destructor
+#           define att_destructor __attribute__((destructor))
 #           define _ATT_HAS_DESTRUCTOR
 #       endif
 
